@@ -4712,7 +4712,7 @@ th {
     color: inherit;
 }*/
 
-.revealedspoiler{
-    background: rgb(37, 37, 37);
+.revealed{
+    background: transparent;
     color: inherit;
 }
