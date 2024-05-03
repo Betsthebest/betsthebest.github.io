@@ -107,7 +107,7 @@ section {
 }
 
 body {
-    cursor: url("img/cursor.gif");
+    cursor: url("img/cursor.png"), auto;
     line-height: 1;
 }
 
