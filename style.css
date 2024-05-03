@@ -1,6 +1,5 @@
 .img-fluid {
     display: inline-block;
-    cursor: default;
 }
 
 html,
@@ -904,7 +903,6 @@ p.style2 span.p:nth-child(n + 2) {
 }
 
 .buttons {
-    cursor: default;
     display: flex;
     justify-content: var(--flex-alignment);
     letter-spacing: 0;
@@ -3294,7 +3292,6 @@ th {
 
 .icc-credits span {
     border-radius: 24px;
-    cursor: pointer;
     display: inline-block;
     font-family: Arial, sans-serif;
     font-size: 12px;
@@ -4628,7 +4625,6 @@ th {
 }
 
 .button {
-    cursor: pointer;
     transition: all 0.3s ease-out;
 }
 
