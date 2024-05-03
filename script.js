@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   //quand le document est prêt
-  if (document.queryselector(".spoiler")){
   document.querySelector(".spoiler").addEventListener("click", () => {
     document.querySelector(".spoiler").classList.add("revealed");
     document.querySelector(".spoiler").classList.remove("spoiler");
-  });}
+  });
 });
 (function () {
   var on = addEventListener,

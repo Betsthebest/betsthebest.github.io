@@ -1,6 +1,6 @@
 .img-fluid {
     display: inline-block;
-    cursor: crosshair;
+    cursor: default;
 }
 
 html,
@@ -107,6 +107,7 @@ section {
 }
 
 body {
+    cursor: url("img/cursor.gif");
     line-height: 1;
 }
 
@@ -4704,7 +4705,6 @@ th {
 .spoiler {
     background: #333333;
     border-radius: 0.2em;
-    cursor: url("http://www.rw-designer.com/cursor-view/134643.png"), auto;
     color: transparent;
 }
 
