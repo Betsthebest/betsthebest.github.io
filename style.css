@@ -4704,6 +4704,7 @@ th {
 .spoiler {
     background: #333333;
     border-radius: 0.2em;
+    cursor: url("http://www.rw-designer.com/cursor-view/134643.png"), auto;
     color: transparent;
 }
 
@@ -4713,6 +4714,7 @@ th {
 }*/
 
 .revealed{
-    background: transparent;
+    background: #444444;
+    border-radius: 0.2em;
     color: inherit;
 }
