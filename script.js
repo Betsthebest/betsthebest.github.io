@@ -1,3 +1,4 @@
+alert("bets")
 document.addEventListener("DOMContentLoaded", function () {
   //quand le document est prêt
   document.querySelector(".spoiler").addEventListener("click", () => {
