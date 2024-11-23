@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic HTML Page</title>
+</head>
+<body>
+  <div id="dynamic-content"></div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const url = urlParams.get('url');
+    fetch(url)
+   .then( r => r.text() )
+   .then( t =>  document.getElementById('dynamic-content').innerHTML = decodedHtml)
+   /*
+    const base64Html = urlParams.get('base64Html');
+
+    if (base64Html) {
+      const decodedHtml = atob(base64Html);
+      document.getElementById('dynamic-content').innerHTML = decodedHtml;
+    }*/
+  </script>
+</body>
+</html>
