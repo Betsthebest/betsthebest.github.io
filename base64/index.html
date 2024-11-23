@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Converter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        :root {
+            --primary: #1a73e8;
+            --primary-container: #e8f0fe;
+            --on-primary: #ffffff;
+            --surface: #ffffff;
+            --surface-container: #f8f9fa;
+            --outline: #dadce0;
+            --elevation-1: 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.06);
+            --elevation-2: 0 2px 4px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.05);
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: var(--surface-container);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #202124;
+        }
+
+        .container {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 28px;
+            box-shadow: var(--elevation-2);
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #202124;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 500;
+        }
+
+        .converter-layout {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .converter-layout {
+                flex-direction: column;
+            }
+        }
+
+        .input-group {
+            flex: 1;
+            position: relative;
+        }
+
+        .input-label {
+            font-size: 0.875rem;
+            color: #5f6368;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        textarea {
+            width: 100%;
+            height: 240px;
+            padding: 16px;
+            border: 1px solid var(--outline);
+            border-radius: 16px;
+            resize: none;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background: var(--surface-container);
+            color: #202124;
+            line-height: 1.5;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-container);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 0 24px;
+            height: 40px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .primary-btn {
+            background-color: var(--primary);
+            color: var(--on-primary);
+        }
+
+        .secondary-btn {
+            background-color: var(--primary-container);
+            color: var(--primary);
+        }
+
+        button:hover {
+            box-shadow: var(--elevation-1);
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--surface);
+            border: 1px solid var(--outline);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            color: #5f6368;
+        }
+
+        .copy-btn:hover {
+            background: var(--surface-container);
+            border-color: #5f6368;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Base64 Converter</h1>
+        
+        <div class="converter-layout">
+            <div class="input-group">
+                <div class="input-label">Input</div>
+                <textarea id="input" placeholder="Enter text to encode/decode..."></textarea>
+                <button class="copy-btn" onclick="copyText('input', this)">Copy</button>
+            </div>
+
+            <div class="input-group">
+                <div class="input-label">Output</div>
+                <textarea id="output" placeholder="Result will appear here..." readonly></textarea>
+                <button class="copy-btn" onclick="copyText('output', this)">Copy</button>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="primary-btn" onclick="encode()">Encode</button>
+            <button class="primary-btn" onclick="decode()">Decode</button>
+            <button class="secondary-btn" onclick="clearAll()">Clear</button>
+        </div>
+    </div>
+
+    <script>
+        function encode() {
+            const input = document.getElementById('input').value;
+            try {
+                const encoded = btoa(input);
+                document.getElementById('output').value = encoded;
+            } catch (error) {
+                document.getElementById('output').value = 'Error: Invalid input for encoding';
+            }
+        }
+
+        function decode() {
+            const input = document.getElementById('input').value;
+            try {
+                const decoded = atob(input);
+                document.getElementById('output').value = decoded;
+            } catch (error) {
+                document.getElementById('output').value = 'Error: Invalid input for decoding';
+            }
+        }
+
+        function clearAll() {
+            document.getElementById('input').value = '';
+            document.getElementById('output').value = '';
+        }
+
+        async function copyText(elementId, buttonElement) {
+            const text = document.getElementById(elementId).value;
+            try {
+                await navigator.clipboard.writeText(text);
+                const originalText = buttonElement.textContent;
+                buttonElement.textContent = 'Copied!';
+                setTimeout(() => {
+                    buttonElement.textContent = originalText;
+                }, 1000);
+            } catch (err) {
+                console.error('Failed to copy text:', err);
+            }
+        }
+    </script>
+</body>
+</html>
